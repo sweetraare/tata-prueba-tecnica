@@ -16,7 +16,6 @@ function Header(): React.JSX.Element {
 const styles = StyleSheet.create(
   {
     container: {
-      backgroundColor: "white",
       paddingVertical: 10,
       display: "flex",
       flexDirection: "row",

@@ -5,15 +5,15 @@ const api = axios.create({
     baseURL: Config.API_URL,
 });
 
-export const get = (url: string) => {
+export function get<T>(url: string) {
     const requestConfig = {
         headers: {
             authorId: Config.AUTHOR_ID,
         },
     };
 
-    return api.get(url, requestConfig);
-};
+    return api.get<T>(url, requestConfig);
+}
 
 export const post = (url: string, data: any) => {
     const requestConfig = {

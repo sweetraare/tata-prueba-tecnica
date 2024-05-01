@@ -9,8 +9,10 @@ function Navigation(): React.JSX.Element {
   return <Stack.Navigator
     initialRouteName="Home"
     screenOptions={{
-      // headerShown: false,
       header: Header,
+      contentStyle: {
+        backgroundColor: "white",
+      },
     }}
   >
     <Stack.Screen
