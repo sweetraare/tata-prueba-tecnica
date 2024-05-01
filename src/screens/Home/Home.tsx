@@ -27,7 +27,7 @@ function HomeScreen(): React.JSX.Element {
 const styles = StyleSheet.create(
   {
     mainView: {
-      backgroundColor: "red",
+      backgroundColor: "",
     },
   },
 );
