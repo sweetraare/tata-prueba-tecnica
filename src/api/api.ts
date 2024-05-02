@@ -15,14 +15,14 @@ export function get<T>(url: string) {
     return api.get<T>(url, requestConfig);
 }
 
-export const post = (url: string, data: any) => {
+export function post<T>(url: string, data: any) {
     const requestConfig = {
         headers: {
             authorId: Config.AUTHOR_ID,
         },
     };
 
-    return api.post(url, data, requestConfig);
-};
+    return api.post<T>(url, data, requestConfig);
+}
 
 export default api;

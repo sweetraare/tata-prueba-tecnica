@@ -5,8 +5,13 @@ import ProductItem from "./components/ProductItem/ProductItem";
 import Divider from "../../components/Divider";
 import CustomButton from "../../components/Button";
 import SearchInput from "./components/SearchInput/SearchInput";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../navigation/Navigation";
 
-function HomeScreen(): React.JSX.Element {
+interface HomeScreenProps
+  extends NativeStackScreenProps<RootStackParamList, "Home"> { }
+
+function HomeScreen({ navigation, route }: HomeScreenProps): React.JSX.Element {
   const { data, isError, isPending, error } = useGetProducts();
   const [searchValue, setSeachValue] = useState("");
 
@@ -25,6 +30,10 @@ function HomeScreen(): React.JSX.Element {
   const filteredValues = data?.filter((product) =>
     product.name.toUpperCase().includes(searchValue.toUpperCase())
   );
+
+  const handleAddProduct = () => {
+    navigation.navigate("AddProduct");
+  };
 
   return <View style={styles.mainView}>
     <SearchInput
@@ -45,7 +54,7 @@ function HomeScreen(): React.JSX.Element {
     />
     <CustomButton
       label={"Agregar"}
-      onPress={() => { }}
+      onPress={handleAddProduct}
     />
   </View>;
 }
@@ -56,6 +65,8 @@ const styles = StyleSheet.create(
       display: "flex",
       marginTop: 20,
       gap: 20,
+      flex: 1,
+      marginBottom: 20,
     },
     flatList: {
       marginHorizontal: 20,
