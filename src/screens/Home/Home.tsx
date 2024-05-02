@@ -12,7 +12,7 @@ import ProductSkeleton from "./components/ProductSkeleton/ProductSkeleton";
 interface HomeScreenProps
   extends NativeStackScreenProps<RootStackParamList, "Home"> { }
 
-function HomeScreen({ navigation, route }: HomeScreenProps): React.JSX.Element {
+function HomeScreen({ navigation }: HomeScreenProps): React.JSX.Element {
   const { data, isError, isPending, error } = useGetProducts();
   const [searchValue, setSeachValue] = useState("");
 
