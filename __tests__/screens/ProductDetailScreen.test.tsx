@@ -37,7 +37,9 @@ describe("Add products page", () => {
     });
 
     render(
-      <ProductDetailScreen route={route} navigation={navigation} />,
+      <QueryClientProvider client={queryClient}>
+        <ProductDetailScreen route={route} navigation={navigation} />,
+      </QueryClientProvider>,
     );
 
     expect(screen.getByText(`ID: ${product.id}`)).toBeOnTheScreen();

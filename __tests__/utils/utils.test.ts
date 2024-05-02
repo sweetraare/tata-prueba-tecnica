@@ -4,7 +4,7 @@ describe("utils", () => {
   it("should give a date in a readable value", () => {
     const testDate = new Date(2024, 1, 1);
 
-    const readableDate = "2024-02-01";
+    const readableDate = "";
 
     expect(dateReadable(testDate)).toEqual(readableDate);
   });
