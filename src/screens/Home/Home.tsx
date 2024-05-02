@@ -22,6 +22,10 @@ function HomeScreen(): React.JSX.Element {
     </View>;
   }
 
+  const filteredValues = data?.filter((product) =>
+    product.name.toUpperCase().includes(searchValue.toUpperCase())
+  );
+
   return <View style={styles.mainView}>
     <SearchInput
       value={searchValue}
@@ -31,7 +35,7 @@ function HomeScreen(): React.JSX.Element {
 
     <FlatList
       style={styles.flatList}
-      data={data}
+      data={filteredValues}
       renderItem={({ item }) => {
         return <ProductItem product={item} />;
       }}
