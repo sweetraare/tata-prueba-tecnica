@@ -33,8 +33,8 @@ function ProductDetailScreen(
         value={dateReadable(product.date_revision)}
       />
     </View>
-    <View style={styles.buttonContainer}>
-      <CustomButton label={"Editar"} onPress={() => { }} secondary />
+    <View testID="buttonContainer" style={styles.buttonContainer}>
+      <CustomButton testID="" label={"Editar"} onPress={() => { }} secondary />
       <CustomButton label={"Eliminar"} onPress={() => { }} danger />
     </View>
   </View>;
