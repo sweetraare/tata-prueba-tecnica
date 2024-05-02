@@ -4,6 +4,7 @@ import { StyleSheet, View } from "react-native";
 import { Text } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons/faChevronRight";
+import { Link } from "@react-navigation/native";
 
 type ProductItemProps = {
   product: Product;
@@ -12,23 +13,35 @@ type ProductItemProps = {
 function ProductItem({ product }: ProductItemProps): React.JSX.Element {
   console.log("prroo", product);
 
-  return <View style={styles.container}>
-    <View>
-      <Text style={styles.textName}>{product.name}</Text>
-      <Text style={styles.textId}>ID: {product.id}</Text>
+  return <Link
+    to={{ screen: "ProductDetail", params: { product } }}
+  >
+    <View style={styles.container}>
+      <View style={styles.textContainer}>
+        <Text style={styles.textName}>{product.name}</Text>
+        <Text style={styles.textId}>ID: {product.id}</Text>
+      </View>
+      <FontAwesomeIcon icon={faChevronRight} color="lightslategray" />
     </View>
-    <FontAwesomeIcon icon={faChevronRight} color="lightslategray" />
-  </View>;
+  </Link>;
 }
 
 const styles = StyleSheet.create(
   {
     container: {
       padding: 10,
+      display: "flex",
       flexDirection: "row",
       justifyContent: "space-between",
       alignItems: "center",
+      flex: 1,
+      width: "100%",
     },
+    textContainer: {
+      display: "flex",
+      flexDirection: "column",
+    },
+
     textName: {
       color: "black",
     },

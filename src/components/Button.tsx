@@ -6,20 +6,32 @@ type ButtonProps = {
   secondary?: boolean;
   onPress: () => void;
   disabled?: boolean;
+  danger?: boolean;
 };
 
 function CustomButton(
-  { label, secondary = false, onPress, disabled = false }: ButtonProps,
+  { label, secondary = false, onPress, disabled = false, danger }: ButtonProps,
 ): React.JSX.Element {
+  const buttonStyle = () => {
+    if (secondary) return styles.secondaryButton;
+    if (danger) return styles.dangerButton;
+
+    return styles.primaryButton;
+  };
+
+  const textStyle = () => {
+    if (secondary) return styles.textSecondary;
+    if (danger) return styles.textDanger;
+
+    return styles.textPrimary;
+  };
+
   return <TouchableOpacity
-    style={[
-      styles.button,
-      secondary ? styles.secondaryButton : styles.primaryButton,
-    ]}
+    style={[styles.button, buttonStyle()]}
     disabled={disabled}
     onPress={onPress}
   >
-    <Text style={secondary ? styles.textSecondary : styles.textPrimary}>
+    <Text style={textStyle()}>
       {label}
     </Text>
   </TouchableOpacity>;
@@ -39,6 +51,9 @@ const styles = StyleSheet.create(
     primaryButton: {
       backgroundColor: "gold",
     },
+    dangerButton: {
+      backgroundColor: "red",
+    },
     secondaryButton: {
       backgroundColor: "lightgrey",
     },
@@ -47,6 +62,9 @@ const styles = StyleSheet.create(
     },
     textSecondary: {
       color: "darkblue",
+    },
+    textDanger: {
+      color: "white",
     },
   },
 );
