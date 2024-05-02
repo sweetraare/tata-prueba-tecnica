@@ -15,6 +15,9 @@ Alex Ulloa
 
 ## Antes de empezar
 
+Copiar el archivo `.env.template` en un archivo `.env` con los valores
+solicitados
+
 > **Nota**: Asegurese de haber completado el setup de react native
 > [React Native - Setup](https://reactnative.dev/docs/environment-setup)
 
