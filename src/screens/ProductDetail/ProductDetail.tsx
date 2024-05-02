@@ -5,15 +5,34 @@ import ProductDetailInfo from "./components/ProductDetailInfo";
 import { dateReadable } from "../../utils/utils";
 import ProductImage from "./components/ProductImage";
 import CustomButton from "../../components/Button";
+import DeleteModal from "./components/DeleteModal";
+import { useState } from "react";
+import { useDeleteProduct } from "../../hooks/useDeleteProduct";
 
 interface ProductDetailScreenProps
   extends NativeStackScreenProps<RootStackParamList, "ProductDetail"> { }
 
 function ProductDetailScreen(
-  { route }: ProductDetailScreenProps,
+  { route, navigation }: ProductDetailScreenProps,
 ): React.JSX.Element {
   const { product } = route.params;
+
+  const { mutation } = useDeleteProduct();
+  const [showModal, setShowModal] = useState(false);
+
+  const handleDelete = () => {
+    mutation.mutate(product, {
+      onSuccess: () => {
+        setShowModal(false);
+        navigation.push("Home");
+      },
+    });
+  };
+
   return <View style={styles.container}>
+    {mutation.isError &&
+      <Text style={styles.textError}>{mutation.error.message}</Text>}
+
     <View style={styles.headerContainer}>
       <Text style={styles.textId}>ID: {product.id}</Text>
       <Text style={styles.textDescription}>Información extra</Text>
@@ -34,9 +53,19 @@ function ProductDetailScreen(
       />
     </View>
     <View testID="buttonContainer" style={styles.buttonContainer}>
-      <CustomButton testID="" label={"Editar"} onPress={() => { }} secondary />
-      <CustomButton label={"Eliminar"} onPress={() => { }} danger />
+      <CustomButton label={"Editar"} onPress={() => { }} secondary />
+      <CustomButton
+        label={"Eliminar"}
+        onPress={() => setShowModal(true)}
+        danger
+      />
     </View>
+    <DeleteModal
+      visible={showModal}
+      onClose={() => setShowModal(false)}
+      productName={product.name}
+      onDelete={handleDelete}
+    />
   </View>;
 }
 
@@ -66,6 +95,11 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     flex: 4,
+  },
+
+  textError: {
+    fontSize: 25,
+    color: "red",
   },
 });
 

@@ -11,8 +11,6 @@ type ProductItemProps = {
 };
 
 function ProductItem({ product }: ProductItemProps): React.JSX.Element {
-  console.log("prroo", product);
-
   return <Link
     to={{ screen: "ProductDetail", params: { product } }}
   >

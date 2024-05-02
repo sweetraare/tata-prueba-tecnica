@@ -49,10 +49,11 @@ function AddProductScreen({ navigation }: AddProductProps): React.JSX.Element {
       date_revision: revisionDate ? new Date(revisionDate) : new Date(),
     };
 
-    mutation.mutate(newProduct);
-    if (mutation.isSuccess) {
-      navigation.push("Home");
-    }
+    mutation.mutate(newProduct, {
+      onSuccess: () => {
+        navigation.push("Home");
+      },
+    });
   };
 
   const checkErrors = (property: Properties, value: string | undefined) => {

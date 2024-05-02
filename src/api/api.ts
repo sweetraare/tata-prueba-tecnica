@@ -25,4 +25,14 @@ export function post<T>(url: string, data: any) {
     return api.post<T>(url, data, requestConfig);
 }
 
+export function apiDelete<T>(url: string) {
+    const requestConfig = {
+        headers: {
+            authorId: Config.AUTHOR_ID,
+        },
+    };
+
+    return api.delete<T>(url, requestConfig);
+}
+
 export default api;
