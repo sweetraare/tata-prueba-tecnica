@@ -27,6 +27,7 @@ function CustomButton(
   };
 
   return <TouchableOpacity
+    testID="customButton"
     style={[styles.button, buttonStyle()]}
     disabled={disabled}
     onPress={onPress}

@@ -55,9 +55,8 @@ function AddProductScreen({ navigation }: AddProductProps): React.JSX.Element {
     }
   };
 
-  console.log(mutation.error);
-
   const checkErrors = (property: Properties, value: string | undefined) => {
+    // THis could be addresed using a form library such as react-hook-form
     switch (property) {
       case Properties.id:
         if (value?.length === 0) return true;
