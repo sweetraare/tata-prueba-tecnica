@@ -7,6 +7,7 @@ import CustomButton from "../../components/Button";
 import SearchInput from "./components/SearchInput/SearchInput";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../navigation/Navigation";
+import ProductSkeleton from "./components/ProductSkeleton/ProductSkeleton";
 
 interface HomeScreenProps
   extends NativeStackScreenProps<RootStackParamList, "Home"> { }
@@ -22,8 +23,16 @@ function HomeScreen({ navigation, route }: HomeScreenProps): React.JSX.Element {
   }
 
   if (isPending) {
+    const dummyData = Array.from(Array(10).keys());
     return <View>
-      <Text>loading...</Text>
+      <FlatList
+        style={styles.flatList}
+        data={dummyData}
+        renderItem={() => {
+          return <ProductSkeleton />;
+        }}
+        ItemSeparatorComponent={() => <Divider />}
+      />
     </View>;
   }
 
