@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react-native";
-import Header from "../../src/components/Header";
 import FormInput from "../../src/components/FormInput";
 
 describe("Form input component", () => {

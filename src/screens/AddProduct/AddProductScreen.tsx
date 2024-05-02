@@ -85,7 +85,7 @@ function AddProductScreen({ navigation }: AddProductProps): React.JSX.Element {
     }
   };
 
-  return <ScrollView>
+  return <ScrollView testID="addProductsView">
     <Text style={styles.textTitle}>Formulario de Registro</Text>
     {mutation.isError &&
       <Text style={styles.textError}>{mutation.error.message}</Text>}
